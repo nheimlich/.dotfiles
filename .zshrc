@@ -14,6 +14,7 @@ export do="\-o=yaml --dry-run=client"
 ### ALIASES ###
 alias serve="browser-sync start --server --files ."
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias curltime="curl -w \"@${HOME}/.curl-format.txt\" -o /dev/null -s "
 alias k=kubectl
@@ -48,17 +49,6 @@ function git {
       ;;
     *)
       command git "$@"
-      ;;
-  esac
-}
-function dot {
-  case "${1}" in
-    commit)
-      shift
-      command dot commit --signoff "$@"
-      ;;
-    *)
-      command dot "$@"
       ;;
   esac
 }
