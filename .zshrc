@@ -109,6 +109,8 @@ function display_kube_context {
 autoload -Uz compinit; compinit
 source <(kubectl completion zsh)
 source <(talosctl completion zsh)
+source <(virtctl completion zsh)
+source <(fzf --zsh)
 
 ### NVM ###
 [[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
