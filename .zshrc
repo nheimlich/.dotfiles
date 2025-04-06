@@ -99,13 +99,19 @@ export TYPEWRITTEN_CURSOR="block"
 export TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=display_kube_context
 
 function display_kube_context {
-  tw_kube_context="$(kubectl config current-context 2> /dev/null)"
-  if [[ ${tw_kube_context} != "" ]]; then
-    echo "($(basename "${tw_kube_context}"))"
+  local ctx ns
+  ctx="$(kubectl config current-context 2> /dev/null)"
+  ns="$(kubectl config view --minify --output 'jsonpath={..namespace}' 2> /dev/null)"
+  if [[ -n "${ctx}" ]]; then
+    if [[ -n "${ns}" ]]; then
+      echo "(${ctx} | ${ns})"
+    else
+      echo "(${ctx})"
+    fi
   fi
 }
 
-### KUBECTL COMPLETION ###
+### AUTOCOMPLETION ###
 autoload -Uz compinit; compinit
 source <(kubectl completion zsh)
 source <(talosctl completion zsh)
@@ -115,3 +121,6 @@ source <(fzf --zsh)
 ### NVM ###
 [[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
 [[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion"
+
+### ZSH ###
+bindkey -v
