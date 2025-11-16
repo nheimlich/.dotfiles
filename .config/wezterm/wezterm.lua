@@ -4,6 +4,7 @@ local config = {}
 config = wezterm.config_builder()
 
 config = {
+  audible_bell = "Disabled",
   automatically_reload_config = true,
   enable_tab_bar = false,
   use_fancy_tab_bar = true,
