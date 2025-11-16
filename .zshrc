@@ -1,7 +1,6 @@
 ### PATHS ###
 fpath=(${fpath} "/Users/nheimlich/.zfunctions")
-export PATH="${KREW_ROOT:-${HOME}/.krew}/bin:${PATH}"
-export DOCKER_HOST='unix:///var/folders/_d/9hg093s16cj8c3np1xh6s7gw0000gn/T/podman/podman-machine-default-api.sock'
+export PATH="${KREW_ROOT:-${HOME}/.krew}/bin:${HOME}/go/bin:${PATH}"
 
 ### ENVIRONMENT VARIABLES ###
 export OP_BIOMETRIC_UNLOCK_ENABLED=true
@@ -17,6 +16,9 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias curltime="curl -w \"@${HOME}/.curl-format.txt\" -o /dev/null -s "
+alias docker="podman"
+alias gs="git status -sb"
+alias gdiff="git --no-pager diff"
 alias k=kubectl
 alias krc='kubectl config current-context'
 alias klc='kubectl config get-contexts -o name | sed "s/^/  /;\|^  $(krc)$|s/ /*/"'
@@ -122,5 +124,3 @@ source <(fzf --zsh)
 [[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
 [[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion"
 
-### ZSH ###
-bindkey -v
