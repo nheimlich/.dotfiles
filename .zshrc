@@ -9,6 +9,9 @@ export DOCKER_DEFAULT_PLATFORM=linux/arm64
 export DOCKER_BUILDKIT=1
 export NVM_DIR="${HOME}/.nvm"
 export do="\-o=yaml --dry-run=client"
+export HOMEBREW_BUNDLE_FILE_GLOBAL="~/.brewfile"
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_ENV_HINTS=1
 
 ### ALIASES ###
 alias serve="browser-sync start --server --files ."
@@ -19,6 +22,7 @@ alias curltime="curl -w \"@${HOME}/.curl-format.txt\" -o /dev/null -s "
 alias docker="podman"
 alias gs="git status -sb"
 alias gdiff="git --no-pager diff"
+alias bup='brew update -q && brew upgrade -q && brew cleanup -s -q --prune=all && brew doctor -q && brew cu -a -q --cleanup --include-mas --no-brew-update -y && brew bundle dump -g -q -f'
 alias k=kubectl
 alias krc='kubectl config current-context'
 alias klc='kubectl config get-contexts -o name | sed "s/^/  /;\|^  $(krc)$|s/ /*/"'
@@ -124,3 +128,9 @@ source <(fzf --zsh)
 [[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
 [[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion"
 
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
+
+copyhist(){
+  fc -ln 0 | awk '!a[$0]++' | fzf --multi --tac --header 'Copy history' | pbcopy
+}
