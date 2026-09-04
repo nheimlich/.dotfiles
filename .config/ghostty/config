@@ -1,0 +1,11 @@
+background-opacity = 0.65
+background-opacity-cells = false
+
+macos-titlebar-style = tabs
+
+bell-features = no-system,no-audio,no-border,no-attention,no-title
+
+# Switch to previous tab with Cmd+Shift+Left
+keybind = super+shift+left=previous_tab
+# Switch to next tab with Cmd+Shift+Right
+keybind = super+shift+right=next_tab
