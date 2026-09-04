@@ -1,0 +1,46 @@
+# Starship configuration - minimal, fast, w/ k8s context & git branch
+
+add_newline = false
+
+format = """
+$kubernetes\
+$git_branch\
+$character"""
+
+[kubernetes]
+format = '[${context}\(${namespace}\)]($style) '
+style = "cyan bold"
+disabled = false
+
+[character]
+success_symbol = "❯"
+error_symbol = "❮"
+
+[directory]
+disabled = true
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "green"
+symbol = "󰘬 "
+disabled = false
+
+[git_status]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[line_break]
+disabled = true
+
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+[status]
+disabled = false
+format = "[$common_meaning$signal_name](bold red) "
+style = "bold red"
